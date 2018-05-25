@@ -4,18 +4,30 @@ import java.text.DateFormat;
 import java.util.Random;
 import java.util.Date;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Event {
 
 
-    Random rnd = new Random();
-    private int id = rnd.nextInt(10000);
+    private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
+
+    private int id;
     private String message;
     private Date date;
     private DateFormat df;
 
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Event(Date date, DateFormat df) {
+        this.id = AUTO_ID.getAndIncrement();
         this.date = date;
         this.df = df;
     }
@@ -29,7 +41,8 @@ public class Event {
         this.message = message;
     }
 
+    @Override
     public String toString() {
-        return new String(this.id + " | " + this.message + " | " + this.df.format(date));
+        return "event [id= " + id + ", message = " + message + ", date= " + df.format(date) + " ] ";
     }
 }
