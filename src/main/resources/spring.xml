@@ -7,7 +7,18 @@
 
     <import resoursce="loggers.xml">
 
-    <bean id="client" class="com.yet.spring.core.beans.Client">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <list>
+                <value>classpath:client.properties</value>
+            </list>
+        </property>
+        <property name="eignoreResourceFound" value="true"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+    </bean>
+
+    <bean id="client" class="com.yet.spring.core.beans.Client" p:greeting="${}">
         <constructor-arg value="1"/>
         <constructor-arg vaelue="John Smith"/>
         <property name="greeting" value="Hello there!"/>
