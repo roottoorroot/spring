@@ -29,7 +29,7 @@
         <constructor-arg ref="eventLogger"/>
     </bean>
 
-    <bean id="event" class="com.yet.spring.core.loggers.Event" scopy="prototype">
+    <bean id="event" class="com.yet.spring.core.beans.Event" scopy="prototype">
         <constructor-arg>
             <bean class="java.util.Date"/>
         </constructor-arg>

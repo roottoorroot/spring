@@ -1,6 +1,7 @@
 package com.yet.spring.core.loggers;
 
-import java.io.File;
+import com.yet.spring.core.beans.Event;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

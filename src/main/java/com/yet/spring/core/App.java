@@ -1,8 +1,8 @@
 package com.yet.spring.core.loggers;
 
 import com.yet.spring.core.beans.Client;
-import javafx.application.Application;
-import org.springframework.context.ApplicationContext;
+import com.yet.spring.core.beans.Event;
+import com.yet.spring.core.beans.EventType;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.Map;
@@ -16,7 +16,7 @@ public class App {
     public App(Client client, EventLogger eventLogger, Map<EventType, EventLogger> loggers) {
         super();
         this.client = client;
-        this.defaultLogger = defaultLogger;
+        this.defaultLogger = eventLogger;
         this.loggers = loggers;
     }
 
@@ -25,6 +25,9 @@ public class App {
 
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
+
+        Client client = ctx.getBean(Client.class);
+        System.out.println("Client says: " + client.getGreeting());
 
         Event event = ctx.getBean(Event.class);
         app.logEvent(EventType.INFO, event, "Some event for 1");

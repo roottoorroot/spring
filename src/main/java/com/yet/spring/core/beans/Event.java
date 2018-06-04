@@ -1,4 +1,4 @@
-package com.yet.spring.core.loggers;
+package com.yet.spring.core.beans;
 
 import java.text.DateFormat;
 import java.util.Random;
@@ -16,7 +16,11 @@ public class Event {
     private Date date;
     private DateFormat df;
 
-
+    public Event(Date date, DateFormat df) {
+        this.id = AUTO_ID.getAndIncrement();
+        this.date = date;
+        this.df = df;
+    }
 
     public int getId() {
         return id;
@@ -24,12 +28,6 @@ public class Event {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Event(Date date, DateFormat df) {
-        this.id = AUTO_ID.getAndIncrement();
-        this.date = date;
-        this.df = df;
     }
 
     public String getMessage() {
